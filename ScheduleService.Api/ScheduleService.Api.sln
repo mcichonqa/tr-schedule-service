@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleService.Api", "ScheduleService.Api.csproj", "{8517A9B2-9FAD-4962-BE3F-CE6F15994EC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScheduleService.Api", "ScheduleService.Api.csproj", "{8517A9B2-9FAD-4962-BE3F-CE6F15994EC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleService.Entity", "..\ScheduleService.Entity\ScheduleService.Entity.csproj", "{00AB96F1-E7E2-44DD-B788-0A9B67303F71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScheduleService.Entity", "..\ScheduleService.Entity\ScheduleService.Entity.csproj", "{00AB96F1-E7E2-44DD-B788-0A9B67303F71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleService.Repository", "..\ScheduleService.Repository\ScheduleService.Repository.csproj", "{B15722D3-100A-44CF-9DE5-3E9894BDE224}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScheduleService.Repository", "..\ScheduleService.Repository\ScheduleService.Repository.csproj", "{B15722D3-100A-44CF-9DE5-3E9894BDE224}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleService.Contract", "..\ScheduleService.Contract\ScheduleService.Contract.csproj", "{DE49EEA4-D5F5-4646-A6BA-126B893E6652}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScheduleService.Contract", "..\ScheduleService.Contract\ScheduleService.Contract.csproj", "{DE49EEA4-D5F5-4646-A6BA-126B893E6652}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleService.Application", "..\ScheduleService.Application\ScheduleService.Application.csproj", "{15DDE07F-99A8-4305-AC88-C824B8FF080B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{DE49EEA4-D5F5-4646-A6BA-126B893E6652}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE49EEA4-D5F5-4646-A6BA-126B893E6652}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE49EEA4-D5F5-4646-A6BA-126B893E6652}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15DDE07F-99A8-4305-AC88-C824B8FF080B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15DDE07F-99A8-4305-AC88-C824B8FF080B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15DDE07F-99A8-4305-AC88-C824B8FF080B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15DDE07F-99A8-4305-AC88-C824B8FF080B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

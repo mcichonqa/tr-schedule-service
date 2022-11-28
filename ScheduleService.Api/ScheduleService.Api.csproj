@@ -25,9 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ScheduleService.Application\ScheduleService.Application.csproj" />
     <ProjectReference Include="..\ScheduleService.Contract\ScheduleService.Contract.csproj" />
     <ProjectReference Include="..\ScheduleService.Entity\ScheduleService.Entity.csproj" />
-    <ProjectReference Include="..\ScheduleService.Repository\ScheduleService.Repository.csproj" />
   </ItemGroup>
 
 </Project>

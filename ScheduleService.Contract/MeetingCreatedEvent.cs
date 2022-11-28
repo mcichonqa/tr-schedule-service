@@ -9,20 +9,20 @@ namespace ScheduleService.Contract
         public DateTime StartMeetingDate { get; init; }
         public int ClientId { get; init; }
         public string MeetingTopic { get; init; }
-        public bool HasSubscription { get; set; }
+        public bool IsScheduled { get; init; }
 
         public MeetingCreatedEvent()
         {
         }
 
-        public MeetingCreatedEvent(int id, DateTime createDate, DateTime startMeetingDate, int clientId, string meetingTopic, bool hasSubscription)
+        public MeetingCreatedEvent(int id, DateTime createDate, DateTime startMeetingDate, int clientId, string meetingTopic, bool isScheduled)
         {
             Id = id;
             CreateDate = createDate;
             StartMeetingDate = startMeetingDate;
             ClientId = clientId;
             MeetingTopic = meetingTopic;
-            HasSubscription = hasSubscription;
+            IsScheduled = isScheduled;
         }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ScheduleService.Api.Mapper.Profiles;
+using ScheduleService.Application;
 using ScheduleService.Entity;
 using ScheduleService.Repository;
 using System.Text.Json.Serialization;
@@ -65,7 +66,10 @@ namespace ScheduleService.Api
             });
 
             services.AddDbContext<ScheduleContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ScheduleDb")));
-            services.AddScoped<IMeetingRepository, MeetingRepository>();
+
+            services.AddScoped<IScheduleRepository, ScheduleRepository>();
+            services.AddScoped<IScheduleServices, ScheduleServices>();
+
             services.AddAutoMapper(typeof(MeetingProfile));
 
             services

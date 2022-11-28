@@ -38,7 +38,7 @@ namespace ScheduleService.Entity.Configuration
                 .IsRequired();
 
             builder
-                .Property(x => x.HasSubscription)
+                .Property(x => x.IsScheduled)
                 .IsRequired();
         }   
     }

@@ -9,6 +9,6 @@ namespace ScheduleService.Entity.Models
         public DateTime StartMeetingDate { get; set; }
         public int ClientId { get; set; }
         public string MeetingTopic { get; set; }
-        public bool HasSubscription { get; set; }
+        public bool IsScheduled { get; set; }
     }
 }

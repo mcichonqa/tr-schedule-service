@@ -2,9 +2,9 @@
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using ScheduleService.Api.Models;
+using ScheduleService.Application;
 using ScheduleService.Contract;
 using ScheduleService.Entity.Models;
-using ScheduleService.Repository;
 using System.Threading.Tasks;
 
 namespace ScheduleService.Api.Controllers
@@ -13,13 +13,13 @@ namespace ScheduleService.Api.Controllers
     [Route("api/[controller]")]
     public class ScheduleController : ControllerBase
     {
-        private readonly IMeetingRepository _meetingService;
+        private readonly IScheduleServices _scheduleServices;
         private readonly IPublishEndpoint _publishEndpoint;
         private readonly IMapper _mapper;
 
-        public ScheduleController(IMeetingRepository meetingService, IPublishEndpoint publishEndpoint, IMapper mapper)
+        public ScheduleController(IScheduleServices scheduleServices, IPublishEndpoint publishEndpoint, IMapper mapper)
         {
-            _meetingService = meetingService;
+            _scheduleServices = scheduleServices;
             _publishEndpoint = publishEndpoint;
             _mapper = mapper;
         }
@@ -27,7 +27,7 @@ namespace ScheduleService.Api.Controllers
         [HttpGet("meeting/{id}")]
         public async Task<IActionResult> GetMeeting(int id)
         {
-            Meeting meeting = await _meetingService.GetMeetingAsync(id);
+            Meeting meeting = await _scheduleServices.GetMeetingAsync(id);
             MeetingDto result = _mapper.Map<MeetingDto>(meeting);
 
             return Ok(result);
@@ -37,8 +37,7 @@ namespace ScheduleService.Api.Controllers
         public async Task<IActionResult> CreateMeeting([FromBody] MeetingDto meeting)
         {
             Meeting result = _mapper.Map<Meeting>(meeting);
-
-            int id = await _meetingService.CreateMeetingAsync(result);
+            int id = await _scheduleServices.CreateMeetingAsync(result);
 
             var @event = new MeetingCreatedEvent()
             {
@@ -47,12 +46,25 @@ namespace ScheduleService.Api.Controllers
                 StartMeetingDate = result.StartMeetingDate,
                 ClientId = result.ClientId,
                 MeetingTopic = result.MeetingTopic,
-                HasSubscription = result.HasSubscription
+                IsScheduled = result.IsScheduled
             };
 
             await _publishEndpoint.Publish(@event);
 
             return Created($"~/api/schedule/{@event.Id}", @event);
+        }
+
+        [HttpPut("cancelMeeting/{meetingId}")]
+        public async Task<IActionResult> CancelMeeting(int meetingId)
+        {
+            await _scheduleServices.CancelMeeting(meetingId);
+            Meeting meeting = await _scheduleServices.GetMeetingAsync(meetingId);
+
+            var @event = new MeetingCanceledEvent(){ Id = meeting.Id };
+
+            await _publishEndpoint.Publish(@event);
+
+            return Ok();
         }
     }
 }

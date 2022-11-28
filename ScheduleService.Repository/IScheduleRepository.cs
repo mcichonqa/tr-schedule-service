@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 namespace ScheduleService.Repository
 {
-    public interface IMeetingRepository
+    public interface IScheduleRepository
     {
         Task<Meeting> GetMeetingAsync(int id);
         Task<List<Meeting>> GetMeetingsAsync();
         Task<int> CreateMeetingAsync(Meeting meeting);
-        Task CancelMeetingAsync(int id);
+        Task UpdateMeetingAsync(Meeting meeting);
     }
 }

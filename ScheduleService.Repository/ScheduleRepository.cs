@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ScheduleService.Repository
 {
-    public class MeetingRepository : IMeetingRepository
+    public class ScheduleRepository : IScheduleRepository
     {
         private readonly ScheduleContext _dbContext;
 
-        public MeetingRepository(ScheduleContext dbContext)
+        public ScheduleRepository(ScheduleContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -27,15 +27,16 @@ namespace ScheduleService.Repository
 
         public async Task<int> CreateMeetingAsync(Meeting meeting)
         {
-            await _dbContext.AddAsync(meeting);
+            await _dbContext.Meetings.AddAsync(meeting);
             await _dbContext.SaveChangesAsync();
 
             return await Task.FromResult(meeting.Id);
         }
 
-        public Task CancelMeetingAsync(int id)
+        public async Task UpdateMeetingAsync(Meeting meeting)
         {
-            throw new System.NotImplementedException();
+            _dbContext.Meetings.Update(meeting);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
